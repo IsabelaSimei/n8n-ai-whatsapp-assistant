@@ -14,7 +14,7 @@
           "post"
         ]
       },
-      "id": "884f1d9a-f8aa-4cd8-8302-2cf57332ca61",
+      "id": "",
       "name": "Respond.io Trigger",
       "type": "@respond-io/n8n-nodes-respond-io.respondioTrigger",
       "typeVersion": 1,
@@ -39,7 +39,7 @@
           "temperature": 0.4
         }
       },
-      "id": "30aa49f8-00cf-4687-a3f2-182a49285298",
+      "id": "",
       "name": "OpenAI Chat Model",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
@@ -56,7 +56,7 @@
         "sessionIdType": "customKey",
         "sessionKey": "={{ $('Respond.io Trigger').item.json.contact.phone+'v1.0.0' }}"
       },
-      "id": "787ee175-69cc-4225-a761-b0da8ae8ee4b",
+      "id": "",
       "name": "Window Buffer Memory",
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
@@ -65,7 +65,7 @@
     {
       "parameters": {
         "toolDescription": "Consulta produtos disponíveis enviando o ID numérico de marca, modelo e categoria.",
-        "url": "https://api.yourdomain.com/api/productos-por-marca-modelo",
+        "url": "Sua API",
         "sendQuery": true,
         "parametersQuery": {
           "values": [
@@ -79,7 +79,7 @@
         "specifyHeaders": "json",
         "jsonHeaders": "={\n  \"Authorization\": \"Bearer YOUR_BEARER_TOKEN_HERE\"\n}"
       },
-      "id": "56842e20-92c8-428c-a87e-442cca973d1b",
+      "id": "",
       "name": "consultar_productos_api",
       "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
       "typeVersion": 1.1,
@@ -96,7 +96,7 @@
         "specifyBody": "json",
         "jsonBody": "=[\n  \"Asesor\"\n]"
       },
-      "id": "9f4ffa51-942b-44f0-9073-06feb018fae3",
+      "id": "",
       "name": "transferir_a_asesor",
       "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
       "typeVersion": 1.1,
@@ -114,7 +114,7 @@
         "jsonBody": "={{ { \"channelId\": $('Respond.io Trigger').item.json.message.channelId, \"message\": { \"type\": \"text\", \"text\": String($json.output || \"Olá! Como podemos te ajudar hoje?\") } } }}",
         "options": {}
       },
-      "id": "7afa2a4c-6f94-40a1-b750-6e250161fef7",
+      "id": "",
       "name": "Send Message",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.5,
@@ -128,7 +128,7 @@
           "systemMessage": "# CONTEXT \n- Você é um assistente virtual responsável por orientar clientes sobre produtos e acessórios automotivos.\n- Seu objetivo é entender a necessidade do cliente, identificar o veículo e recomendar produtos do catálogo em tempo real.\n\n# ROLE & STYLE\n- Mantenha um tom profissional, cordial e objetivo. Respostas curtas e sem excesso de emojis.\n\n# TOP-LEVEL FLOW\n1. Identifique Marca, Modelo e Ano do veículo.\n2. Consulte os produtos na API chamando primeiramente a busca de marcas/modelos e depois os produtos por categoria.\n3. Apresente até 3 opções com Nome, Preço e Link.\n4. Se o cliente solicitar atendimento humano, acione a ferramenta `transferir_a_asesor`."
         }
       },
-      "id": "61e5b056-68ce-47a4-8ac3-d6efe1edd681",
+      "id": "",
       "name": "AI Agent",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
@@ -145,18 +145,18 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.5,
       "position": [4928, 2960],
-      "id": "e6891eb0-2e54-4235-85dc-c0e7c587852e",
+      "id": "",
       "name": "GET - Tags Contacts"
     },
     {
       "parameters": {
         "toolDescription": "Obtém o catálogo de marcas e modelos válidos com IDs numéricos para busca.",
-        "url": "https://api.yourdomain.com/api/main-info",
+        "url": "Sua API",
         "sendHeaders": true,
         "specifyHeaders": "json",
         "jsonHeaders": "{\n  \"Authorization\": \"Bearer YOUR_BEARER_TOKEN_HERE\"\n}"
       },
-      "id": "bf4c93fc-0a59-4019-8296-024f9b271298",
+      "id": "",
       "name": "consultar_marcas_modelos_api",
       "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
       "typeVersion": 1.1,
